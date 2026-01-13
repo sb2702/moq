@@ -133,7 +133,7 @@ This repository provides both [Rust](/rs) and [TypeScript](/js) libraries with s
 ## Documentation
 Additional documentation and implementation details:
 
-- **[Authentication](docs/auth.md)** - JWT tokens, authorization, and security
+- **[Authentication](doc/concepts/authentication.md)** - JWT tokens, authorization, and security
 
 
 ## Protocol
