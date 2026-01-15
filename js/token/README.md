@@ -10,7 +10,7 @@ npm add moq-token
 
 ## Usage
 
-See **[examples/sign-and-verify.ts](examples/sign-and-verify.ts)** for a complete working example.
+See **[examples/sign-and-verify.ts](./examples/sign-and-verify.ts)** for a complete working example.
 
 ## API
 
