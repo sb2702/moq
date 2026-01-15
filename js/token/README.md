@@ -39,7 +39,7 @@ You would first generate a token as so:
 ```typescript
 import {generate} from "@moq/token";
 // Use this for signing
-const key = generate('HS256');
+const key = await generate('HS256');
 ```
 
 or as a CLI
