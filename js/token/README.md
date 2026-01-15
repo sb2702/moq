@@ -26,7 +26,7 @@ moq-token generate ...
 You can also just directly use it via deno or bun as:
 
 ```bash
-bunx @moq/token generate ..
+bunx @moq/token generate ...
 deno run -A npm:@moq/token/cli generate ...
 ```
 
@@ -53,7 +53,7 @@ The default is HS256, you can choose other algorithms with `--algorithm`:
 moq-token generate --key key.jwk --algorithm ES256
 ```
 
-#### Signing
+### Signing
 
 You can sign a token as shown below:
 
@@ -84,7 +84,7 @@ moq-token sign --key "root.jwk" \
   --expires 1703980800 > "alice.jwt"
 ```
 
-#### Verifying
+### Verifying
 
 You can also verify a token
 
@@ -105,7 +105,7 @@ or as a CLI
 moq-token verify --key root.jwk --root "rooms/meeting-123" < alice.jwt
 ```
 
-#### Working example
+### Working example
 
 See **[examples/sign-and-verify.ts](./examples/sign-and-verify.ts)** for a complete working example.
 
