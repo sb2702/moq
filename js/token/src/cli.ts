@@ -6,15 +6,12 @@ import { Command } from "commander";
 import type { Algorithm } from "./algorithm";
 import type { Claims } from "./claims";
 import { generate } from "./generate";
-import type {Key, PublicKey} from "./key";
+import type { Key, PublicKey } from "./key";
 import { load, loadPublic, sign, toPublicKey, verify } from "./key";
 
 const program = new Command();
 
-program
-	.name("moq-token")
-	.description("Generate, sign, and verify tokens for moq-relay")
-	.version("0.1.1");
+program.name("moq-token").description("Generate, sign, and verify tokens for moq-relay").version("0.1.1");
 
 program
 	.command("generate")
@@ -93,7 +90,7 @@ program
 			const keyEncoded = readFileSync(options.key, "utf-8");
 
 			// Try to load as public key first (for asymmetric), fall back to symmetric key
-			let key: Key | PublicKey| undefined	;
+			let key: Key | PublicKey | undefined;
 			try {
 				key = loadPublic(keyEncoded);
 			} catch {

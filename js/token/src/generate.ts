@@ -53,11 +53,7 @@ async function generateHmacKey(alg: Algorithm, byteLength: number, kid?: string)
 /**
  * Generate an RSA asymmetric key pair
  */
-async function generateRsaKey(
-	alg: Algorithm,
-	name: "RSASSA-PKCS1-v1_5" | "RSA-PSS",
-	kid?: string,
-): Promise<Key> {
+async function generateRsaKey(alg: Algorithm, name: "RSASSA-PKCS1-v1_5" | "RSA-PSS", kid?: string): Promise<Key> {
 	const keyPair = await crypto.subtle.generateKey(
 		{
 			name,
