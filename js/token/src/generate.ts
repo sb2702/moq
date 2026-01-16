@@ -1,6 +1,6 @@
 import * as base64 from "@hexagon/base64";
-import { type Algorithm } from "./algorithm";
-import { type Key } from "./key";
+import type { Algorithm } from "./algorithm";
+import type { Key } from "./key";
 
 /**
  * Generate a new key for the given algorithm

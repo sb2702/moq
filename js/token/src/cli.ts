@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 import { readFileSync, writeFileSync } from "node:fs";
-import { Command } from "commander";
 import * as base64 from "@hexagon/base64";
-import { type Algorithm } from "./algorithm";
-import { type Claims } from "./claims";
+import { Command } from "commander";
+import type { Algorithm } from "./algorithm";
+import type { Claims } from "./claims";
 import { generate } from "./generate";
 import { load, loadPublic, sign, toPublicKey, verify } from "./key";
 
