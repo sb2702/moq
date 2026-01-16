@@ -2,7 +2,7 @@
 // This creates a dist/ folder with the correct paths and dependencies for publishing
 // Split from release.ts to allow building packages without publishing
 
-import { copyFileSync, readFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 console.log("✍️  Rewriting package.json...");
@@ -73,6 +73,35 @@ pkg.scripts = undefined;
 
 // Write the rewritten package.json
 writeFileSync("dist/package.json", JSON.stringify(pkg, null, 2));
+
+// Fix ESM imports in compiled JS files to include .js extensions 
+// e.g. from "./cli" => from "./cli.js", required for node compatability
+function fixImportsInDir(dir: string) {
+	const files = readdirSync(dir, { withFileTypes: true });
+	for (const file of files) {
+		const filePath = join(dir, file.name);
+		if (file.isDirectory()) {
+			fixImportsInDir(filePath);
+		} else if (file.name.endsWith(".js")) {
+			let content = readFileSync(filePath, "utf8");
+			// Fix relative imports: from "./foo" or from '../foo' -> add .js
+			content = content.replace(/from\s+['"](\.\.[\/\\].*?)['"]/g, (match, path) => {
+				if (!path.endsWith(".js")) {
+					return match.replace(path, path + ".js");
+				}
+				return match;
+			});
+			content = content.replace(/from\s+['"](\.\/.*?)['"]/g, (match, path) => {
+				if (!path.endsWith(".js")) {
+					return match.replace(path, path + ".js");
+				}
+				return match;
+			});
+			writeFileSync(filePath, content);
+		}
+	}
+}
+fixImportsInDir("dist");
 
 // Copy static files
 console.log("📄 Copying README.md...");
