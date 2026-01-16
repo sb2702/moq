@@ -74,7 +74,7 @@ pkg.scripts = undefined;
 // Write the rewritten package.json
 writeFileSync("dist/package.json", JSON.stringify(pkg, null, 2));
 
-// Fix ESM imports in compiled JS files to include .js extensions 
+// Fix ESM imports in compiled JS files to include .js extensions
 // e.g. from "./cli" => from "./cli.js", required for node compatability
 function fixImportsInDir(dir: string) {
 	const files = readdirSync(dir, { withFileTypes: true });
@@ -85,15 +85,15 @@ function fixImportsInDir(dir: string) {
 		} else if (file.name.endsWith(".js")) {
 			let content = readFileSync(filePath, "utf8");
 			// Fix relative imports: from "./foo" or from '../foo' -> add .js
-			content = content.replace(/from\s+['"](\.\.[\/\\].*?)['"]/g, (match, path) => {
+			content = content.replace(/from\s+['"](\.\.[/\\].*?)['"]/g, (match, path) => {
 				if (!path.endsWith(".js")) {
-					return match.replace(path, path + ".js");
+					return match.replace(path, `${path}.js`);
 				}
 				return match;
 			});
 			content = content.replace(/from\s+['"](\.\/.*?)['"]/g, (match, path) => {
 				if (!path.endsWith(".js")) {
-					return match.replace(path, path + ".js");
+					return match.replace(path, `${path}.js`);
 				}
 				return match;
 			});
