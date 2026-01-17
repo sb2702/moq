@@ -30,7 +30,7 @@ yarn add @moq/lite
 
 `@moq/lite` works on both browsers and servers, however in JS/TS server environments (Node, Bun, Deno) WebTransport is not yet available, so `@moq/lite` will default to WebSockets communication with the relay.
 
-Deno and Bun both have `WebSockets` built in, however Node does not, so for Node you will need the WebSockets polyfill to use `@moq/lite`
+Deno and Bun and Node v21+ have `WebSockets` built in, but older versions of Node do not, so for older versions of Node you will need the WebSockets polyfill to use `@moq/lite`
 
 ```javascript
 import WebSocket from 'ws';
